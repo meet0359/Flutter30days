@@ -1,4 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application/pages/home_page.dart';
+import 'package:flutter_application/pages/login_page.dart';
+import 'package:flutter_application/utils/routes.dart';
+import 'package:flutter_application/widgets/themes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,15 +16,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Welcom',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Welcome'),
-        ),
-        body: const Center(
-          child: Text('hi my name is nick'),
-        ),
-      ),
+      themeMode: ThemeMode.light,
+      theme: MyThemes.lightTheme(context),
+      darkTheme: MyThemes.darkTheme(context),
+      debugShowCheckedModeBanner: false,
+      initialRoute:MyRoutes.HomeRoute,
+      routes: {
+        "/": (context) => LoginPage(),
+        MyRoutes.HomeRoute: (context) => Homepage(),
+        MyRoutes.loginRoute: (context) => LoginPage(),
+        
+      },
     );
   }
 }

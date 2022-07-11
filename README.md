@@ -1,5 +1,5 @@
 # flutter_application
-
+This file was codepur Youtube channel 8 hour course.
 A new Flutter project.
 
 ## Getting Started
