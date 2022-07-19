@@ -1,7 +1,8 @@
-import 'dart:js';
+
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application/widgets/themes.dart';
+
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:flutter_application/models/catalog.dart';
@@ -12,16 +13,19 @@ class HomeDetailpage extends StatelessWidget {
   const HomeDetailpage({
     Key? key,
     required this.catalog,
+  // ignore: unnecessary_null_comparison
   })  : assert(catalog != null),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: MyThemes.creamcolor,
+      appBar: AppBar(
+    backgroundColor: Colors.transparent,
+      ),
+      backgroundColor: context.canvasColor,
       bottomNavigationBar:  Container(
-        color: Colors.white,
+        color:context.cardColor,
         child: ButtonBar(
                 alignment: MainAxisAlignment.spaceBetween,
                 buttonPadding: EdgeInsets.zero,
@@ -31,9 +35,10 @@ class HomeDetailpage extends StatelessWidget {
                       onPressed: () {},
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(MyThemes.darkbluish),
+                              // ignore: deprecated_member_use
+                              MaterialStateProperty.all(context.theme.buttonColor),
                           shape: MaterialStateProperty.all(StadiumBorder())),
-                      child: "Buy".text.make()).wh(100, 40)
+                      child: "Add to cart".text.make()).wh(120, 50)
                 ],
               ).p32(),
       ), 
@@ -52,18 +57,20 @@ class HomeDetailpage extends StatelessWidget {
                   edge: VxEdge.TOP,
                   
                   child: Container(
-                    color: Colors.white,
+                    color:context.cardColor,
                     width: context.screenWidth,
                     child: Column(
                       children: [
-            catalog.name.text.xl4.color(MyThemes.darkbluish).bold.make(),
+            catalog.name.text.xl4.color(context.accentColor).bold.make(),
             catalog.desc.text.xl.textStyle(context.captionStyle).make(),
             10.heightBox,
+            "nt invidunt sdiam est diam sea amet, voluptua ut no lorem et et et amet, et accusam sed.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"
+            .text.textStyle(context.captionStyle).make().p16()
                       ]
                     ).py64(),
                   ))),
         ]),
       ),
-    );
+    );  
   }
 }
